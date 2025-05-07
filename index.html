@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novelreads – Swift App Showcase</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Novelreads</h1>
+    </header>
+
+    <section class="promo">
+        <img class="promo" src="images/design.png" alt="design">
+    </section>
+
+    <section>
+        <h2>App Overview and Navigation</h2>
+        <p>Welcome to <strong>Novelreads</strong>, your next favorite app for discovering, reading, and managing books!
+            Whether you're here to start your next book adventure or just exploring, we’ve got you covered.</p>
+
+        <p>When you first open the app, you’ll be prompted to either <strong>sign up</strong> or <strong>log
+                in</strong>. Once you're registered or logged in, you will unlock access to the full app, which includes
+            the following key sections available through an easy-to-navigate <strong>bottom navigation bar</strong>:</p>
+
+        <ul>
+            <li><strong>Discover</strong>: Find new books, explore recommendations, and discover the next great read.
+            </li>
+            <li><strong>Reading</strong>: Track the books you’re currently reading, keep your progress up-to-date, and
+                stay motivated.</li>
+            <li><strong>Bookshelf</strong>: Organize your library, view books you've saved, and revisit completed reads.
+            </li>
+            <li><strong>Profile</strong>: Personalize your app experience by managing your account, settings, and
+                preferences.</li>
+        </ul>
+
+        <p>After logging in or registering, you’ll have full access to all these features, making it easier than ever to
+            manage and enjoy your reading journey. The bottom navigation bar allows you to effortlessly switch between
+            these core sections, keeping your reading experience smooth and enjoyable.</p>
+    </section>
+
+    <!-- Screenshots -->
+    <section>
+        <h2>App Screenshots</h2>
+        <p>Here’s how Novelreads looks on your device:</p>
+        <div class="screenshot-gallery">
+            <img src="images/screenshot1.png" alt="Screenshot 1">
+            <img src="images/screenshot2.png" alt="Screenshot 2">
+            <img src="images/screenshot3.png" alt="Screenshot 3">
+            <img src="images/screenshot4.png" alt="Screenshot 4">
+        </div>
+    </section> 
+
+    <!-- Swift Code preview -->
+    <section>
+        <h2>🖋 Code Example: ContentView.swift</h2>
+        <p>Here’s a SwiftUI code example from the app's main view (ContentView):</p>
+        <div class="code-snippet">
+            <pre class="line-numbers"><code class="language-swift">import SwiftUI
+struct ContentView: View {
+    @State private var isNavigatingToSignIn = false
+    @State private var isNavigatingToLogin = false
+
+    var body: some View {
+        NavigationStack {
+            VStack {
+                Spacer()
+                Image("logo")
+                    .resizable()
+                    .frame(width: 140, height: 100)
+
+                Text("Welcome to Novelreads")
+                    .font(.title)
+                    .fontWeight(.regular)
+                    .foregroundColor(Color(hex: "26344f"))
+                    .padding(.bottom, 10)
+
+                Text("Create an account to get started on\n your next book reading journey.")
+                    .foregroundColor(Color(hex: "26344f"))
+                    .padding(.bottom, 24)
+                    .multilineTextAlignment(.center)
+                    .opacity(0.5)
+
+                Button(action: {
+                    isNavigatingToSignIn = true
+                }) {
+                    HStack {
+                        Text("Sign Up")
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .padding(10)
+                            .background(Color(hex: "26344f"))
+                            .foregroundColor(.white)
+                            .cornerRadius(10)
+                    }
+                    .padding(10)
+                }
+
+                Button(action: {
+                    isNavigatingToLogin = true
+                }) {
+                    HStack {
+                        Text("Login")
+                            .fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color(hex: "26344f"))
+                            .padding(10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color(hex: "26344f"), lineWidth: 1))
+                    }
+                    .padding(10)
+                }
+
+                Spacer()
+            }
+            .padding()
+            .navigationDestination(isPresented: $isNavigatingToSignIn) {
+                RegistrationView()
+                    .navigationBarHidden(true)
+            }
+            .navigationDestination(isPresented: $isNavigatingToLogin) {
+                LoginView()
+                    .navigationBarHidden(true)
+            }
+            Spacer()
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            .environmentObject(AuthViewModel())
+            .environmentObject(BookManager())
+    }
+}</code></pre>
+
+        </div>
+
+        <h2>Check It Out</h2>
+        <div class="buttons">
+            <a href="https://github.com/gr3yys/Novelreads.git" target="_blank" class="button-link">
+                <img class="icon" src="images/github.png" alt="github"> Source on GitHub
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <!-- <a href="https://www.flaticon.com/free-icons/github" title="github icons">Github icons created by Pixel perfect - Flaticon</a> -->
+        © 2025 Developed by Greychel Ocasio Ortiz
+    </footer>
+
+
+</body>
+
+</html>
